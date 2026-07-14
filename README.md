@@ -2,7 +2,7 @@
 
 **Tagline:** *AI proposes. Humans approve. Agents execute.*
 
-Production-ready hackathon project with 3 intelligent agents, human-in-the-loop approval, and integrations (Notion, GitHub, Slack, Gmail).
+Production-ready project with 3 intelligent agents, human-in-the-loop approval, and integrations (Notion, GitHub, Slack, Gmail).
 
 ## Quick Start
 
@@ -11,8 +11,7 @@ Production-ready hackathon project with 3 intelligent agents, human-in-the-loop 
 cd agentforge/backend
 copy .env.example .env
 npm install
-npm run seed
-npm run dev
+npm start
 ```
 
 ### 2. Frontend
@@ -26,12 +25,6 @@ npm run dev
 - **App:** http://localhost:5173
 - **API:** http://localhost:4000/api/health
 
-### Demo Login
-| Role | Email | Password |
-|------|-------|----------|
-| Manager | manager@agentforge.dev | manager123 |
-| Admin | admin@agentforge.dev | admin123 |
-| User | user@agentforge.dev | user123 |
 
 ## Demo Flow (3 minutes)
 
