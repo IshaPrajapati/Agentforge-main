@@ -1,8 +1,27 @@
 # AgentForge — AI Multi-Agent Orchestration Platform
+# About AgentForge
 
-**Tagline:** *AI proposes. Humans approve. Agents execute.*
+AgentForge is an autonomous AI-agent platform designed to streamline software engineering planning. 
+By utilizing a LangGraph state machine, the system guides a project proposal through a series of specialized AI steps:
 
-Production-ready project with 3 intelligent agents, human-in-the-loop approval, and integrations (Notion, GitHub, Slack, Gmail).
+1. **Agent 1: Senior Requirements Analyst**
+   - Decomposes high-level project descriptions into structured, priority-ranked development modules with timeline estimations.
+2. **Agent 2: Risk Manager & Feasibility Assessor**
+   - Audits the proposed timelines and budgets, flagging schedule risks and determining if human intervention is required.
+3. **AI Moderator**
+   - Dynamically resolves contradictions and timeline disagreements between the Analyst and Risk Manager to build consensus.
+4. **Human-in-the-Loop Approval Gate**
+   - Pauses execution on high-risk projects, prompting an engineering manager to review the agent's plan, request changes, or approve deployment.
+5. **Agent 3: Execution Agent**
+   - Dispatches approved projects directly to team workspaces, automatically creating Notion boards, GitHub tracking issues, Slack notifications, and email summaries.
+
+### Technical Stack
+* **Frontend:** React, Vite, Tailwind CSS, Lucide icons.
+* **Backend:** Node.js, Express, LangGraph, LangChain ESM.
+* **Orchestration:** State-machine state graphs for multi-agent routing.
+* **Database:** Custom simulated MongoDB/Mongoose JSON database configured to run write-safe on serverless temporary directories (`/tmp`).
+* **Deployment:** Hosted as a monorepo on Vercel with serverless API functions.
+
 
 ## Quick Start
 
