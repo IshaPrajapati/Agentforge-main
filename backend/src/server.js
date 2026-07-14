@@ -48,15 +48,34 @@ async function seedUsers() {
   }
 }
 
-async function start() {
-  await connectDatabase()
-  await seedUsers()
-  app.listen(config.port, () => {
-    logger.info(`AgentForge API running on http://localhost:${config.port}`)
+let isInitialized = false
+async function initialize() {
+  if (!isInitialized) {
+    await connectDatabase()
+    await seedUsers()
+    isInitialized = true
+  }
+}
+
+// Add initialization middleware for Vercel / Serverless env
+app.use(async (req, res, next) => {
+  try {
+    await initialize()
+    next()
+  } catch (err) {
+    next(err)
+  }
+})
+
+if (!process.env.VERCEL) {
+  initialize().then(() => {
+    app.listen(config.port, () => {
+      logger.info(`AgentForge API running on http://localhost:${config.port}`)
+    })
+  }).catch((err) => {
+    logger.error('Failed to start server', { error: err.message })
+    process.exit(1)
   })
 }
 
-start().catch((err) => {
-  logger.error('Failed to start server', { error: err.message })
-  process.exit(1)
-})
+export default app

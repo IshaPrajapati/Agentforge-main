@@ -4,15 +4,25 @@ import { fileURLToPath } from 'url'
 import { v4 as uuidv4 } from 'uuid'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '../../data')
-const DB_FILE = path.join(DATA_DIR, 'store.json')
+const ORIGINAL_DB_FILE = path.resolve(__dirname, '../../data/store.json')
+
+const IS_VERCEL = !!process.env.VERCEL
+const DATA_DIR = IS_VERCEL ? '/tmp' : path.resolve(__dirname, '../../data')
+const DB_FILE = IS_VERCEL ? path.join(DATA_DIR, 'store.json') : ORIGINAL_DB_FILE
 
 function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
+  if (!IS_VERCEL && !fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true })
+  }
 }
 
 function loadStore() {
   ensureDataDir()
+  if (IS_VERCEL && !fs.existsSync(DB_FILE)) {
+    if (fs.existsSync(ORIGINAL_DB_FILE)) {
+      fs.copyFileSync(ORIGINAL_DB_FILE, DB_FILE)
+    }
+  }
   if (!fs.existsSync(DB_FILE)) {
     return { users: [], projects: [], agentHistory: [], auditLogs: [] }
   }
