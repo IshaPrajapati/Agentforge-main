@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-[#f5f5f5];
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-none font-mono text-[11px] uppercase tracking-[0.1em] font-medium transition-all duration-150 active:scale-[0.98];
+  }
+  .btn-primary {
+    @apply btn bg-[#f2f4eb] hover:bg-[#e4e7dd] text-black;
+    box-shadow: -2px 2px 0px 0px #4ade80, -4px 4px 0px 0px #c084fc;
+  }
+  .btn-secondary {
+    @apply btn bg-[#141414] hover:bg-[#1a1a1a] text-gray-300 border border-gray-800;
+  }
+  .btn-danger {
+    @apply btn bg-red-950 hover:bg-red-900 text-red-400 border border-red-900;
+  }
+  .btn-success {
+    @apply btn bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-900;
+  }
+  .card {
+    @apply bg-[#0a0a0a] border border-[#1a1a1a] p-8 rounded-none;
+  }
+  .input {
+    @apply w-full px-4 py-3 bg-[#050505] border border-[#1a1a1a] rounded-none text-gray-100 placeholder-gray-600 focus:outline-none focus:border-gray-500 font-mono text-sm;
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-1 rounded-none font-mono text-[10px] uppercase tracking-wider font-medium;
+  }
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6;
+  }
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/5 rounded-lg;
+  }
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:border-[#4ade80]/30;
+  }
+}
